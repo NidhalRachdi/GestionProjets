@@ -1,6 +1,7 @@
 package gestion_projets.presentation;
 
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -20,8 +21,16 @@ import org.apache.log4j.Logger;
 @RequestScoped
 public class ProjetBean {
 
+	//Add logger fo display title
 	public Logger log= Logger.getLogger(ProjetBean.class);
 	private String title;
+	
+	//Allow this function to be applied first
+	@PostConstruct
+	public void initBean(){
+		
+		title="tappez un mot";
+	}
 
 	//Ajout methode qui affiche le message tappé par l'utilisateur
 	public void saveDate(ActionEvent e){
