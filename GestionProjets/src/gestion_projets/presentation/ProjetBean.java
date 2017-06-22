@@ -24,12 +24,21 @@ public class ProjetBean {
 	//Add logger fo display title
 	public Logger log= Logger.getLogger(ProjetBean.class);
 	private String title;
+	private String description;
 	
 	//Allow this function to be applied first
 	@PostConstruct
 	public void initBean(){
 		
 		title="tappez un mot";
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	//Ajout methode qui affiche le message tappé par l'utilisateur
