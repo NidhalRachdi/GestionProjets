@@ -17,7 +17,13 @@
 		
 		<h:outputLabel value="Description : " for="description"></h:outputLabel>
 		<h:inputTextarea rows="8"  cols="100" id="description" value="#{projetBean1.description}"></h:inputTextarea>
+		<br/>
+		<h:outputLabel value="budget : " for="budget"></h:outputLabel>
+		<h:selectOneMenu id="budget" value="#{projetBean1.budget}"></h:selectOneMenu>
+		<br/>
 		
+		<h:outputLabel value="Type : " for="type"></h:outputLabel>
+		<h:selectOneMenu id="type" value="#{projetBean1.type}"></h:selectOneMenu>
 	</h:form>
 
 </h:body>

@@ -24,8 +24,25 @@ public class ProjetBean {
 	//Add logger fo display title
 	public Logger log= Logger.getLogger(ProjetBean.class);
 	private String title;
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	private String description;
-	
+	private String budget;
+	private String type;
+	public String getBudget() {
+		return budget;
+	}
+
+	public void setBudget(String budget) {
+		this.budget = budget;
+	}
+
 	//Allow this function to be applied first
 	@PostConstruct
 	public void initBean(){
