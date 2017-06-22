@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+                "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!-- cest trs importante lecriture precedente -->
+<hibernate-configuration>
+	<session-factory>
+		<!-- Postgress Settings -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sampledatabase?useSSL=false</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+		<!-- Oracle Settings <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property> 
+			<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property> 
+			<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:ob</property> 
+			<property name="hibernate.connection.username">pi</property> <property name="hibernate.connection.password">tad</property> 
+			<property name="hibernate.default_schema">PI</property> <property name="hibernate.cache.use_second_level_cache">false</property> -->
+
+		<property name="connection.pool_size">1</property>
+
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- Disable the second-level cache -->
+
+		<property name="cache.provider_class">org.hibernate.cache.NocacheProvider</property>
+
+		<!-- echo all executed sql to stdout -->
+		<property name="show_sql">true</property>
+
+		<!-- drop the existing tables and create new one -->
+
+		<property name="hbm2ddl.auto">update</property>
+
+
+		<mapping class="gestion_projets.dao.entity.Projet" />
+
+		<mapping class="gestion_projets.dao.entity.Type" />
+
+
+
+
+	</session-factory>
+</hibernate-configuration>
