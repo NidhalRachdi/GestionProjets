@@ -24,24 +24,13 @@ public class ProjetBean {
 	//Add logger fo display title
 	public Logger log= Logger.getLogger(ProjetBean.class);
 	private String title;
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	private String description;
 	private String budget;
 	private String type;
-	public String getBudget() {
-		return budget;
-	}
+	
 
-	public void setBudget(String budget) {
-		this.budget = budget;
-	}
+	
+
 
 	//Allow this function to be applied first
 	@PostConstruct
@@ -50,20 +39,17 @@ public class ProjetBean {
 		title="tappez un mot";
 	}
 
-	public String getDescription() {
-		return description;
-	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	
+	
 	//Ajout methode qui affiche le message tappé par l'utilisateur
 	public void saveDate(ActionEvent e){
 		// Affichage avec log
 		log.info("Le titre est : "+ title);
 		
 	}
+	
+	
 	
 	public String getTitle() {
 		return title;
@@ -74,6 +60,31 @@ public class ProjetBean {
 	}
 	
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	
+	
+	public String getBudget() {
+		return budget;
+	}
+
+	public void setBudget(String budget) {
+		this.budget = budget;
+	}
+	
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 	
 }
