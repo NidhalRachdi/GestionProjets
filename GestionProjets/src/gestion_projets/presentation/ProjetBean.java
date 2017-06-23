@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
@@ -37,22 +39,80 @@ public class ProjetBean {
 	private List<SelectItem> typeList;
 
 	
+	{
+		
+		System.out.println("Block !");
+	}
+	
+	static {
+		
+		System.out.println("Block static !");
+	}
+	
 	public ProjetBean() {
-		System.out.println("construct");
+		System.out.println("construct!");
 	}
 
+	public void generateDescription(ActionEvent e){
+		
+		String desc = "";
+		
+		desc+="Le titre est :" + title;
+		desc= desc + "Le montant : " + budget ;
+		desc+="Active :" + ("Y".equalsIgnoreCase(active)?"Oui" : "Non");
+		description=desc;
+		
+		title="";
+		budget="";
+		active="";
+		
+	}
+	public void addProject(ActionEvent e){
+		
+		
+		if("".equalsIgnoreCase(title)){
+			
+			
+			FacesContext.getCurrentInstance().addMessage("title", new FacesMessage("Le titre est vide ! "));
+			
+		}else if(title.length()>10){
+			FacesContext.getCurrentInstance().addMessage("title", new FacesMessage("Le titre est supp de 10 chars ! "));
+		}
+		else{
+			
+			
+			log.error("Les valeurs : ");
+			
+			log.info(" titre : "+ title);
+			log.info(" description : "+ description);
+			log.info(" budget : "+ budget);
+			log.info(" type : "+ type);
+			log.info(" active : "+ active);
+			// add dataBase
+		}
+		
+		
+		
+	
+		
+	}
 
+	
+	
+	
+	
 	//Allow this function to be applied first
 	//on initialise les objets dans cette méthode
 	@PostConstruct
 	public void initBean(){
 		
-		title="tappez un mot";
 		typeList =new ArrayList<SelectItem>();
 		typeList.add(new SelectItem("", ""));
 		typeList.add(new SelectItem(1, "Informatique"));
 		typeList.add(new SelectItem(2, "Commerce"));
 		typeList.add(new SelectItem(3, "Autre"));
+		
+		System.out.println("Post construct !");
 	}
 
 
