@@ -9,37 +9,45 @@
 <h:body>
 
 	<h:form>
-		<h:outputText value="Titre de projet "></h:outputText>
-		<h:inputText value="#{projetBean1.title}"></h:inputText>
-		
-		<!-- Ajout d'un bouton avec évennement mapper la methode saveDate-->
-		<h:commandButton value="Submit" actionListener="#{projetBean1.saveDate}"></h:commandButton>
-		<br/>
-		
-		<h:outputLabel value="Description : " for="description"></h:outputLabel>
-		<h:inputTextarea rows="8"  cols="100" id="description" value="#{projetBean1.description}"></h:inputTextarea>
-		<br/>
-		<h:outputLabel value="budget : " for="budget"></h:outputLabel>
-		<h:selectOneMenu id="budget" value="#{projetBean1.budget}"></h:selectOneMenu>
-		<br/>
-		
-		<h:outputLabel value="Type : " for="type"></h:outputLabel>
-		<!-- Permet de selectionner un seul choix dans la liste déroulante -->
-		<h:selectOneMenu id="type" value="#{projetBean1.type}">
-		
-		
-		<!-- les tags de f concernent des tags entre les composant de html  -->
-		<!-- itemValue pour le serveur, itemLabel sera affiché à l'utilisateur -->
-		
-		<f:selectItem itemValue="" itemLabel=""></f:selectItem>
-		<f:selectItem itemValue="2" itemLabel="Commerce"></f:selectItem>
-		<f:selectItem itemValue="3" itemLabel="Autre"></f:selectItem>
-		</h:selectOneMenu>
-		
-		
-		
-		
-	</h:form>
+		<h3>Ajouter un nouveau projet</h3>
+			<table>
+				<tr> 
+					<td><h:outputLabel value="Titre : " for="Titre"></h:outputLabel></td>
+					<td><h:inputText value="#{projetBean1.title}"></h:inputText></td>
+				</tr>
+			
+				<tr> 
+					<td><h:outputLabel value="Description : " for="description"></h:outputLabel></td>
+					<td><h:inputTextarea rows="8"  cols="100" id="description" value="#{projetBean1.description}"></h:inputTextarea></td>
+				</tr>
+				
+				<tr> 
+					<td><h:outputLabel value="budget : " for="budget"></h:outputLabel></td>
+					<td><h:selectOneMenu id="budget" value="#{projetBean1.budget}"></h:selectOneMenu></td>
+				</tr>		
+				
+				<tr>
+				
+						<td><h:outputLabel value="Type : " for="type"></h:outputLabel></td>
+						<td><h:selectOneMenu id="type" value="#{projetBean1.type}">
+							<f:selectItems value="#{projetBean1.typeList}"></f:selectItems>
+							</h:selectOneMenu></td>
+				
+				
+				
+				</tr>	
+				
+				<tr>
+					<td><h:outputLabel value="Active : " for="active"></h:outputLabel></td>
+					<td><h:selectOneRadio  value="#{projetBean1.active}" id="active">
+					<f:selectItem itemValue="Y" itemLabel="Oui"></f:selectItem>
+					<f:selectItem itemValue="N" itemLabel="Non"></f:selectItem>
+					</h:selectOneRadio></td>
+				
+				</tr>	
+			</table>
+			
+		</h:form>
 
 </h:body>
 </html>
