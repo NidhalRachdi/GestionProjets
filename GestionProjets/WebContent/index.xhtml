@@ -24,11 +24,13 @@
 		<br/>
 		
 		<h:outputLabel value="Type : " for="type"></h:outputLabel>
+		<!-- Permet de selectionner un seul choix dans la liste déroulante -->
 		<h:selectOneMenu id="type" value="#{projetBean1.type}">
 		
 		
 		<!-- les tags de f concernent des tags entre les composant de html  -->
 		<!-- itemValue pour le serveur, itemLabel sera affiché à l'utilisateur -->
+		
 		<f:selectItem itemValue="1" itemLabel="Informatique"></f:selectItem>
 		<f:selectItem itemValue="2" itemLabel="Commerce"></f:selectItem>
 		<f:selectItem itemValue="3" itemLabel="Autre"></f:selectItem>
