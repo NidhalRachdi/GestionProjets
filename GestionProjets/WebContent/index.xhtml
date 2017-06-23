@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Gestion de projet</title>
@@ -23,7 +24,19 @@
 		<br/>
 		
 		<h:outputLabel value="Type : " for="type"></h:outputLabel>
-		<h:selectOneMenu id="type" value="#{projetBean1.type}"></h:selectOneMenu>
+		<h:selectOneMenu id="type" value="#{projetBean1.type}">
+		
+		
+		<!-- les tags de f concernent des tags entre les composant de html  -->
+		<!-- itemValue pour le serveur, itemLabel sera affiché à l'utilisateur -->
+		<f:selectItem itemValue="1" itemLabel="Informatique"></f:selectItem>
+		<f:selectItem itemValue="2" itemLabel="Commerce"></f:selectItem>
+		<f:selectItem itemValue="3" itemLabel="Autre"></f:selectItem>
+		</h:selectOneMenu>
+		
+		
+		
+		
 	</h:form>
 
 </h:body>
