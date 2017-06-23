@@ -10,10 +10,11 @@
 
 	<h:form id="forms">
 		<h3>Ajouter un nouveau projet </h3>
+			<h:messages style="border:2px solid green; color:red; padding:5px; widh:100%;" ></h:messages>
 			<table>
 				<tr> 
 					<td><h:outputLabel value="Titre : " for="title"></h:outputLabel></td>
-					<td><h:inputText value="#{projetBean1.title}" id="title"></h:inputText></td>
+					<td><h:inputText required="true" requiredMessage="Titre est obligatoire !" value="#{projetBean1.title}" id="title"></h:inputText></td>
 				</tr>
 			
 				<tr> 
@@ -23,7 +24,7 @@
 				
 				<tr> 
 					<td><h:outputLabel value="budget : " for="budget"></h:outputLabel></td>
-					<td><h:inputText value="#{projetBean1.budget}" id="budget"></h:inputText></td>
+					<td><h:inputText required="true" requiredMessage="Budget est obligatoire !" value="#{projetBean1.budget}" id="budget"></h:inputText></td>
 				</tr>		
 				
 				<tr>
@@ -49,6 +50,9 @@
 				<tr>
 					<td colspan="2">
 						<h:commandButton value="Sauvegarder" actionListener="#{projetBean1.addProject}"></h:commandButton>
+						<h:commandButton value="generate Description" actionListener="#{projetBean1.generateDescription}"></h:commandButton>
+						
+						
 					</td>
 				</tr>	
 			</table>
