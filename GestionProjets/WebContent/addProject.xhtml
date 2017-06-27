@@ -30,7 +30,7 @@
 				<tr>
 				
 						<td><h:outputLabel value="Type : " for="type"></h:outputLabel></td>
-						<td><h:selectOneMenu id="type" value="#{projetBean1.type}">
+						<td><h:selectOneMenu id="type" value="#{projetBean1.type}" required="true" requiredMessage="Type est obligatoire !">
 							<f:selectItems value="#{projetBean1.typeList}"></f:selectItems>
 							</h:selectOneMenu></td>
 				
