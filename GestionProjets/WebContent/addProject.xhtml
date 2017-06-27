@@ -7,10 +7,56 @@
 	<title>Management Project</title>
 </h:head>
 <h:body>
-
+<!--  
+required="true" requiredMessage="Budget est obligatoire !" 
+required="true" requiredMessage="Type est obligatoire !"-->
 	<h:form id="forms">
+	<h3> La liste des projets</h3>
+	
+	<h:dataTable value="#{projetBean1.projetList}" var="o" border="1" style="width:50%; border:1px solid #000;">
+	
+		<h:column>
+			<f:facet name="header">Code</f:facet>
+			<h:outputText value="#{o.id}"></h:outputText>
+		
+		</h:column>
+	
+			<h:column>
+		    <f:facet name="header">Titre</f:facet>
+			<h:outputText value="#{o.title}"></h:outputText>
+		
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Budget</f:facet>	
+			<h:outputText value="#{o.budget}"></h:outputText>
+		
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Type</f:facet>
+			<h:outputText value="#{o.typeId}"></h:outputText>
+		
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Active</f:facet>
+			<h:outputText value="#{o.active}"></h:outputText>
+		
+		</h:column>
+		
+	</h:dataTable>
+	
 		<h3>Ajouter un nouveau projet </h3>
 			<h:messages style="border:2px solid green; color:red; padding:5px; widh:100%;" ></h:messages>
+			
+	  <h:commandButton value="show Forms" actionListener="#{projetBean1.showFormAction}"></h:commandButton>
+  
+	
+	  <h:panelGroup id="addProjectForms" rendered="#{projetBean1.showForm}">
+	  
+			<h:outputText value="#{projetBean1.success}" style="color:green; font-weight:bold"></h:outputText>
+			
 			<table>
 				<tr> 
 					<td><h:outputLabel value="Titre : " for="title"></h:outputLabel></td>
@@ -24,13 +70,13 @@
 				
 				<tr> 
 					<td><h:outputLabel value="budget : " for="budget"></h:outputLabel></td>
-					<td><h:inputText required="true" requiredMessage="Budget est obligatoire !" value="#{projetBean1.budget}" id="budget"></h:inputText></td>
+					<td><h:inputText value="#{projetBean1.budget}" id="budget"></h:inputText></td>
 				</tr>		
 				
 				<tr>
 				
 						<td><h:outputLabel value="Type : " for="type"></h:outputLabel></td>
-						<td><h:selectOneMenu id="type" value="#{projetBean1.type}" required="true" requiredMessage="Type est obligatoire !">
+						<td><h:selectOneMenu id="type" value="#{projetBean1.type}">
 							<f:selectItems value="#{projetBean1.typeList}"></f:selectItems>
 							</h:selectOneMenu></td>
 				
@@ -51,12 +97,13 @@
 					<td colspan="2">
 						<h:commandButton value="Sauvegarder" actionListener="#{projetBean1.addProject}"></h:commandButton>
 						<h:commandButton value="generate Description" actionListener="#{projetBean1.generateDescription}"></h:commandButton>
+					    <h:commandButton value="Annuler" actionListener="#{projetBean1.cancelAction}"></h:commandButton>
 						
 						
 					</td>
 				</tr>	
 			</table>
-			
+		</h:panelGroup>	
 		</h:form>
 
 </h:body>
