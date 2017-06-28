@@ -43,11 +43,12 @@ required="true" requiredMessage="Type est obligatoire !"-->
 		</h:column>
 		
 		<h:column>
+		
 			<f:facet name="header">Active</f:facet>
+			<!-- Test Width giup pannel -->
+			<h:panelGroup rendered="#{o.active eq 'Y'}">
 			
-			<h:panelGroup rendered="#{!(o.active eq 'Y')}">
-			
-				<h:outputText value="Non"></h:outputText>
+				<h:outputText value="Oui"></h:outputText>
 			
 			</h:panelGroup>
 			
