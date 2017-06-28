@@ -77,6 +77,11 @@ public class ProjetBean {
 	
 	//Allow this function to be applied first
 		//on initialise les objets dans cette méthode
+	
+	
+	
+	
+	
 		@PostConstruct
 		public void initBean(){
 			
@@ -89,26 +94,39 @@ public class ProjetBean {
 			//typeList.add(new SelectItem(1, "Informatique"));
 			//typeList.add(new SelectItem(2, "Commerce"));
 			//typeList.add(new SelectItem(3, "Autre"));
-			
-			System.out.println("x1");
+			try{
 			List<Type> listServices = typeServices.findAll();
-			System.out.println("x2");
-//			for(Type o:listServices){
-//				System.out.println("x3");
-//				typeList.add(new SelectItem(o.getId(), o.getName()));
-//				System.out.println("x4");
-//			}
+			for(Type o:listServices){
+				typeList.add(new SelectItem(o.getId(), o.getName()));
+			}
+			}catch(Exception e){
+				
+				System.out.println("Exception 2 à gérée");
+			}
 			//remplir projetList
+			try{
 			projetList = projetServices.findAll();
-			
+			}catch(Exception e){
+				
+				System.out.println("exception 1 à gérée");
+			}
 			
 		}
 		
-		public void showFormAction(ActionEvent e){
+		
+		
+		
+		
+		
+		
+		
+	public void showFormAction(ActionEvent e){
 			
 			log.info("true");
 			showForm=true;
 		}
+		
+		
 	public void cancelAction(ActionEvent e){
 			
 			log.info("false");
@@ -173,7 +191,18 @@ public class ProjetBean {
 		}
 		
 	}
-
+	public void deleteProject(ActionEvent e){
+		
+		log.info("delete project");
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 	//Ajout methode qui affiche le message tappé par l'utilisateur
 	public void saveDate(ActionEvent e){
 		// Affichage avec log
@@ -182,10 +211,6 @@ public class ProjetBean {
 	}
 	
 	
-	
-
-
-
 
 	public String getTitle() {
 		return title;

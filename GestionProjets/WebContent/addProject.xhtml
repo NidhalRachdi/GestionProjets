@@ -60,9 +60,17 @@ required="true" requiredMessage="Type est obligatoire !"-->
 		
 		</h:column>
 		
+		<h:column>
+		
+			<f:facet name="header">Supprimer</f:facet>
+			<h:commandButton value="Supprimer" actionListener="#{projetBean1.deleteProject}">
+			</h:commandButton>
+		
+		</h:column>		
+		
 	</h:dataTable>
 	
-	 <h3>Ajouter un nouveau projet </h3>
+ <h3>Ajouter un nouveau projet </h3>
 			<h:messages style="border:2px solid green; color:red; padding:5px; widh:100%;" ></h:messages>
 			
 		
