@@ -3,6 +3,7 @@ package gestion_projets.presentation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -56,7 +57,7 @@ public class ProjetBean {
 	private String active;
 	
 	private String success;
-	private boolean showForm;
+	private boolean showForm=true;
 	//chaque objet dans cette liste est une ligne dans le menu de type
 	private List<SelectItem> typeList;
 	private List<Projet> projetList;
@@ -86,7 +87,7 @@ public class ProjetBean {
 		public void initBean(){
 			
 			System.out.println("Post construct !");
-			showForm=false;
+			//showForm=false;
 			
 			//remplir typeList
 			typeList =new ArrayList<SelectItem>();
@@ -113,9 +114,15 @@ public class ProjetBean {
 			
 		}
 		
-		
-		
-		
+		public String getParam(String name){
+			
+			
+			FacesContext fc = FacesContext.getCurrentInstance();
+			
+			Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+			
+			return params.get(name);
+		}
 		
 		
 		
@@ -130,7 +137,7 @@ public class ProjetBean {
 	public void cancelAction(ActionEvent e){
 			
 			log.info("false");
-			showForm=true;
+			showForm=false;
 		}
 
 	public void generateDescription(ActionEvent e){
@@ -195,8 +202,15 @@ public class ProjetBean {
 		
 		log.info("delete project");
 		
+		//id et name
 		
+		FacesContext fc = FacesContext.getCurrentInstance();
+		Map<String, String> param = fc.getExternalContext().getRequestParameterMap();
 		
+		log.info("id :" + param.get("id"));
+		log.info("name :" + param.get("name"));
+		projetServices.delete(new Long(param.get("id")));
+		projetList = projetServices.findAll();
 	}
 	
 	
