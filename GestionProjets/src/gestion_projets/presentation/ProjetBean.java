@@ -57,10 +57,13 @@ public class ProjetBean {
 	private String active;
 	
 	private String success;
-	private boolean showForm;
+	private boolean showForm=true;
 	//chaque objet dans cette liste est une ligne dans le menu de type
 	private List<SelectItem> typeList;
 	private List<Projet> projetList;
+	
+	private String id;
+	private String operation;
 	
 	{
 		
@@ -114,19 +117,21 @@ public class ProjetBean {
 			System.out.println("operation : " + getParam("operation"));
 			
 			if("edit".equalsIgnoreCase(getParam("operation"))){
-				
+				setOperation(getParam("operation"));
 				Long id =null;
 				Projet projet=null;
 				
 				try{
 					id=Long.valueOf(getParam("id"));
+					setId(getParam("id"));
 				}catch(Exception e){
 				}
 				
 				
 				if(id !=null){
 					
-					projetServices.findById(id);
+					projet = projetServices.findById(id);
+					
 					if(projet !=null){
 						
 						title=projet.getTitle();
@@ -214,7 +219,20 @@ public class ProjetBean {
 			log.info(" type : "+ type);
 			log.info(" active : "+ active);
 			
-			Projet p = new Projet();
+			Projet p =null;
+			
+			System.out.println("addProject : " + operation + "-" + id);
+			
+			if("edit".equalsIgnoreCase(operation)){
+				
+				p = projetServices.findById(new Long(id));
+				System.out.println("edit");
+			}else{
+				
+				p = new Projet(); 
+				System.out.println("new");
+			}
+			
 			p.setTitle(title);
 			p.setDescription(description);
 			p.setBudget(Double.valueOf(budget));
@@ -230,7 +248,8 @@ public class ProjetBean {
 			budget="";
 			type="";
 			active="";
-			
+			id ="";
+			operation="";
 			// add dataBase
 		}
 		
@@ -341,6 +360,46 @@ public class ProjetBean {
 
 	public void setShowForm(boolean showForm) {
 		this.showForm = showForm;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getOperation() {
+		return operation;
+	}
+
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
+
+	public Logger getLog() {
+		return log;
+	}
+
+	public void setLog(Logger log) {
+		this.log = log;
+	}
+
+	public ProjetServices getProjetServices() {
+		return projetServices;
+	}
+
+	public void setProjetServices(ProjetServices projetServices) {
+		this.projetServices = projetServices;
+	}
+
+	public TypeServices getTypeServices() {
+		return typeServices;
+	}
+
+	public void setTypeServices(TypeServices typeServices) {
+		this.typeServices = typeServices;
 	}
 	
 	
