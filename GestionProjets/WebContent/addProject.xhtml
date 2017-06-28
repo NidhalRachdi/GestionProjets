@@ -11,6 +11,7 @@
 required="true" requiredMessage="Budget est obligatoire !" 
 required="true" requiredMessage="Type est obligatoire !"-->
 	<h:form id="forms">
+	
 	<h3> La liste des projets</h3>
 	
 	<h:dataTable value="#{projetBean1.projetList}" var="o" border="1" style="width:50%; border:1px solid #000;">
@@ -29,29 +30,44 @@ required="true" requiredMessage="Type est obligatoire !"-->
 		
 		<h:column>
 			<f:facet name="header">Budget</f:facet>	
-			<h:outputText value="#{o.budget}"></h:outputText>
+			<h:outputText value="#{o.budget}">
+				<f:convertNumber type="currency" currencyCode="MAD"></f:convertNumber>
+			</h:outputText>
 		
 		</h:column>
 		
 		<h:column>
 			<f:facet name="header">Type</f:facet>
-			<h:outputText value="#{o.typeId}"></h:outputText>
+			<h:outputText value="#{o.type.name}"></h:outputText>  
 		
 		</h:column>
 		
 		<h:column>
 			<f:facet name="header">Active</f:facet>
-			<h:outputText value="#{o.active}"></h:outputText>
+			
+			<h:panelGroup rendered="#{!(o.active eq 'Y')}">
+			
+				<h:outputText value="Non"></h:outputText>
+			
+			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{!(o.active eq 'Y')}">
+			
+				<h:outputText value="Non"></h:outputText>
+			
+			</h:panelGroup>
 		
 		</h:column>
 		
 	</h:dataTable>
 	
-		<h3>Ajouter un nouveau projet </h3>
+	 <h3>Ajouter un nouveau projet </h3>
 			<h:messages style="border:2px solid green; color:red; padding:5px; widh:100%;" ></h:messages>
 			
+		
+		
 	  <h:commandButton value="show Forms" actionListener="#{projetBean1.showFormAction}"></h:commandButton>
-  
+ 	  
 	
 	  <h:panelGroup id="addProjectForms" rendered="#{projetBean1.showForm}">
 	  
@@ -70,6 +86,7 @@ required="true" requiredMessage="Type est obligatoire !"-->
 				
 				<tr> 
 					<td><h:outputLabel value="budget : " for="budget"></h:outputLabel></td>
+					
 					<td><h:inputText value="#{projetBean1.budget}" id="budget"></h:inputText></td>
 				</tr>		
 				
@@ -105,6 +122,7 @@ required="true" requiredMessage="Type est obligatoire !"-->
 			</table>
 		</h:panelGroup>	
 		</h:form>
+		<h:graphicImage value="/jsf.ico" />	
 
 </h:body>
 </html>
