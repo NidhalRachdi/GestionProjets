@@ -2,10 +2,13 @@ package gestion_projets.dao.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Projet implements Serializable{
@@ -25,8 +28,14 @@ public class Projet implements Serializable{
 	
 	private String active;
 
-	private int type_id;
+	@Column(name="type_id")
+	private Long typeId;
 	
+	
+	//pour dire un type peut exister dans plusieurs projets
+	@ManyToOne
+	@JoinColumn(name="type_id", referencedColumnName="id", insertable=false, updatable=false)
+	private Type type;
 	
 	
 	public Projet() {
@@ -70,10 +79,54 @@ public class Projet implements Serializable{
 	public String getActive() {
 		return active;
 	}
+	
+	/* permet de mettre oui ou non dans active selon sa valeur Y or N
+	public String getActiveConvert() {
+		if("Y".equalsIgnoreCase(active)){
+			
+			return "Oui";
+		}else{
+			
+			return "Non";
+		}
+	}
+	
+	*/
+	
 
 	public void setActive(String active) {
 		this.active = active;
-	} 
+	}
+
+	
+	
+	
+
+
+	public Long getTypeId() {
+		return typeId;
+	}
+
+
+
+	public void setTypeId(Long typeId) {
+		this.typeId = typeId;
+	}
+
+
+
+	public Type getType() {
+		return type;
+	}
+
+
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+
+ 
 	
 	
 	
