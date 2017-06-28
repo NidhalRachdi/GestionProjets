@@ -57,7 +57,7 @@ public class ProjetBean {
 	private String active;
 	
 	private String success;
-	private boolean showForm=true;
+	private boolean showForm;
 	//chaque objet dans cette liste est une ligne dans le menu de type
 	private List<SelectItem> typeList;
 	private List<Projet> projetList;
@@ -83,6 +83,7 @@ public class ProjetBean {
 	
 	
 	
+		@SuppressWarnings("unused")
 		@PostConstruct
 		public void initBean(){
 			
@@ -105,13 +106,49 @@ public class ProjetBean {
 				System.out.println("Exception 2 à gérée");
 			}
 			//remplir projetList
-			try{
-			projetList = projetServices.findAll();
-			}catch(Exception e){
-				
-				System.out.println("exception 1 à gérée");
-			}
 			
+			projetList = projetServices.findAll();
+			
+			
+			System.out.println("id : " + getParam("id"));
+			System.out.println("operation : " + getParam("operation"));
+			
+			if("edit".equalsIgnoreCase(getParam("operation"))){
+				
+				Long id =null;
+				Projet projet=null;
+				
+				try{
+					id=Long.valueOf(getParam("id"));
+				}catch(Exception e){
+				}
+				
+				
+				if(id !=null){
+					
+					projetServices.findById(id);
+					if(projet !=null){
+						
+						title=projet.getTitle();
+						description=projet.getDescription();
+						
+						
+						if(projet.getBudget() !=null){
+						budget=projet.getBudget().toString();
+						}
+						
+						
+						type=projet.getTypeId().toString()+ "";
+						active=projet.getActive();	
+						
+						showForm=true;
+					}
+				}
+				 
+				
+				
+				
+			}
 		}
 		
 		public String getParam(String name){
