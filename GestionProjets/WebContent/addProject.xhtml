@@ -5,6 +5,13 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Management Project</title>
+	<script>
+	
+		function confirmer(){
+			return confirm("etes vous vouloir supprimer !")
+		}
+	
+	</script>
 </h:head>
 <h:body>
 <!--  
@@ -18,7 +25,17 @@ required="true" requiredMessage="Type est obligatoire !"-->
 	
 		<h:column>
 			<f:facet name="header">Code</f:facet>
-			<h:outputText value="#{o.id}"></h:outputText>
+		<!-- Ajout methode edit -->	
+			<h:link value="#{o.id}">
+			
+			
+				<f:param name="id" value="#{o.id}"></f:param>
+				<f:param name="operation" value="edit"></f:param>
+			</h:link>
+			
+	
+	
+	
 		
 		</h:column>
 	
@@ -63,9 +80,15 @@ required="true" requiredMessage="Type est obligatoire !"-->
 		<h:column>
 		
 			<f:facet name="header">Supprimer</f:facet>
-			<h:commandButton value="Supprimer" actionListener="#{projetBean1.deleteProject}">
-			</h:commandButton>
-		
+			<h:commandLink onclick="return confirmer();" actionListener="#{projetBean1.deleteProject}">
+				
+				<h:graphicImage library="images" name="trach.png"></h:graphicImage>
+				
+				<f:param name="id" value="#{o.id}"></f:param>
+				<f:param name="name" value="nidhal"></f:param>
+			
+			</h:commandLink>
+
 		</h:column>		
 		
 	</h:dataTable>
@@ -131,7 +154,6 @@ required="true" requiredMessage="Type est obligatoire !"-->
 			</table>
 		</h:panelGroup>	
 		</h:form>
-		<h:graphicImage value="/jsf.ico" />	
 
 </h:body>
 </html>
