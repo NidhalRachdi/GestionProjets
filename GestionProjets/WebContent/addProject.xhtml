@@ -18,20 +18,17 @@
 required="true" requiredMessage="Budget est obligatoire !" 
 required="true" requiredMessage="Type est obligatoire !"-->
 	<h:form id="forms">
-	<!-- Ajout InputHidden pour garder les valeurs des champs parceque j'utilise comme scope Request -->
-		<h:inputHidden value="#{projectBean1.id}"></h:inputHidden>
-		<h:inputHidden value="#{projectBean1.operation}"></h:inputHidden>
-		
+	
 	<h3> La liste des projets</h3>
 	
 	<h:dataTable value="#{projetBean1.projetList}" var="o" border="1" style="width:50%; border:1px solid #000;">
 	
 		<h:column>
 			<f:facet name="header">Code</f:facet>
-		<!-- Ajout methode edit, on peyt utiliser outcome mais il faut ajouter le fichier de config et ajouter les page de pagination/liens -->	
-		
-		
+		<!-- Ajout methode edit -->	
 			<h:link value="#{o.id}">
+			
+			
 				<f:param name="id" value="#{o.id}"></f:param>
 				<f:param name="operation" value="edit"></f:param>
 			</h:link>
