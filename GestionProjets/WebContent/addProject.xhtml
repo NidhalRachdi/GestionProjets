@@ -5,11 +5,19 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Management Project</title>
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+	<script src="//code.jquery.com/jquery-1.11.3.min.js" ></script>
+	<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+
+	</script>
 	<script>
 	
 		function confirmer(){
 			return confirm("etes vous vouloir supprimer !")
 		}
+		$(document).ready(function(){
+		    $('.myTable').DataTable();
+		});
 	
 	</script>
 </h:head>
@@ -18,10 +26,13 @@
 required="true" requiredMessage="Budget est obligatoire !" 
 required="true" requiredMessage="Type est obligatoire !"-->
 	<h:form id="forms">
+	<!-- Ajout InputHidden pour garder les valeurs des champs parceque j'utilise comme scope Request -->
+		<h:inputHidden value="#{projetBean1.id}"></h:inputHidden>
+		<h:inputHidden value="#{projetBean1.operation}"></h:inputHidden>
+		
+	<h3><center style="color: blue;">La liste des projets</center> </h3>
 	
-	<h3> La liste des projets</h3>
-	
-	<h:dataTable value="#{projetBean1.projetList}" var="o" border="1" style="width:50%; border:1px solid #000;">
+	<h:dataTable styleClass="myTable" value="#{projetBean1.projetList}" var="o" >
 	
 		<h:column>
 			<f:facet name="header">Code</f:facet>
@@ -32,10 +43,6 @@ required="true" requiredMessage="Type est obligatoire !"-->
 				<f:param name="id" value="#{o.id}"></f:param>
 				<f:param name="operation" value="edit"></f:param>
 			</h:link>
-			
-	
-	
-	
 		
 		</h:column>
 	
@@ -94,6 +101,7 @@ required="true" requiredMessage="Type est obligatoire !"-->
 	</h:dataTable>
 	
  <h3>Ajouter un nouveau projet </h3>
+ 
 			<h:messages style="border:2px solid green; color:red; padding:5px; widh:100%;" ></h:messages>
 			
 		

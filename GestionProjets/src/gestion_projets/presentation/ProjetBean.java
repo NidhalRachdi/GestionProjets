@@ -74,7 +74,7 @@ public class ProjetBean {
 	// Allow this function to be applied first
 	// on initialise les objets dans cette méthode
 
-	@SuppressWarnings("unused")
+	// @SuppressWarnings("unused")
 	@PostConstruct
 	public void initBean() {
 
@@ -82,15 +82,23 @@ public class ProjetBean {
 		// showForm=false;
 
 		// remplir typeList
-		typeList = new ArrayList<SelectItem>();
+		System.out.println("x1");
+		typeList = new ArrayList<>();
+		System.out.println("x2");
 		typeList.add(new SelectItem("", ""));
+		System.out.println("x3");
 		// typeList.add(new SelectItem(1, "Informatique"));
 		// typeList.add(new SelectItem(2, "Commerce"));
 		// typeList.add(new SelectItem(3, "Autre"));
+
 		try {
 			List<Type> listServices = typeServices.findAll();
 			for (Type o : listServices) {
+				System.out.println("\\\\\\\\\\" + o.getName());
+				System.out.println("\\\\\\\\\\" + o.getId());
 				typeList.add(new SelectItem(o.getId(), o.getName()));
+				System.out.println("\\\\\\\\\\" + o.getName());
+				System.out.println("\\\\\\\\\\" + o.getId());
 			}
 		} catch (Exception e) {
 
