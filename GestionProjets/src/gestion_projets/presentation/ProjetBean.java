@@ -22,7 +22,7 @@ import gestion_projets.services.TypeServices;
 import gestion_projets.services.TypeServicesImpl;
 
 /**
- * 
+ * Sous controlleur Jsf ManagedBean
  * 
  * @author Himanshu
  *
@@ -34,66 +34,52 @@ import gestion_projets.services.TypeServicesImpl;
 
 public class ProjetBean {
 
-	// Add logger fo display title
+	// Add logger for display title
 	public Logger log = Logger.getLogger(ProjetBean.class);
 
-	// appelle couche services
-
+	// appel de la couche service
 	private ProjetServices projetServices = new ProjetServicesImpl();
 	private TypeServices typeServices = new TypeServicesImpl();
 
+	// variable d'instance indiquant le titre du projet
 	private String title;
+	// variable d'instance indiquant la description du projet sélectionné
 	private String description;
+	// variable d'instance indiquant le budget du projet
 	private String budget;
+	// variable d'instance indiquant le type du projet
 	private String type;
+	// variable d'instance indiquant le statut du projet
 	private String active;
-
+	// variable d'instance indiquant si le projet a été bien ajouté
 	private String success;
+	// Variable d'instance permet d'afficher ou de cacher le formulaire d'ajout
+	// d'un projet
 	private boolean showForm = true;
-	// chaque objet dans cette liste est une ligne dans le menu de type
+	// contient la Liste des types des projets enregistrés dans la base de
+	// données, chaque objet dans cette liste est une ligne dans le menu de type
 	private List<SelectItem> typeList;
+	// contient la Liste des projets enregistrés dans la base de données
 	private List<Projet> projetList;
-
+	// id du projet sélectionné
 	private String id;
+	// opération effectuée sur le projet sélectionné
 	private String operation;
 
-	{
-
-		System.out.println("Block !");
-	}
-
-	static {
-
-		System.out.println("Block static !");
-	}
-
-	public ProjetBean() {
-		System.out.println("construct!");
-	}
-
 	// Allow this function to be applied first
-	// on initialise les objets dans cette méthode
-
-	// @SuppressWarnings("unused")
+	// We initialize the objects in this method
 	@PostConstruct
 	public void initBean() {
 
-		System.out.println("Post construct !");
-		// showForm=false;
-
 		// remplir typeList
-		System.out.println("x1");
 		typeList = new ArrayList<>();
-		System.out.println("x2");
 		typeList.add(new SelectItem("", ""));
-		System.out.println("x3");
-		// typeList.add(new SelectItem(1, "Informatique"));
-		// typeList.add(new SelectItem(2, "Commerce"));
-		// typeList.add(new SelectItem(3, "Autre"));
 
 		try {
 			List<Type> listServices = typeServices.findAll();
 			for (Type o : listServices) {
+				// maMethode();
+
 				System.out.println("\\\\\\\\\\" + o.getName());
 				System.out.println("\\\\\\\\\\" + o.getId());
 				typeList.add(new SelectItem(o.getId(), o.getName()));
